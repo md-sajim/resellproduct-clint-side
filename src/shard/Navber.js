@@ -2,17 +2,16 @@ import React, { useContext } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-// import { FaUserCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import logo from '../../src/assets/logo.jpg'
+import { AuthContext } from '../context/AuthProvider';
+
 
 const Navber = () => {
-    // const { logOut, user, setUser } = useContext();
-    const user = 'sajim'
+    const { logOut, user, setUser } = useContext(AuthContext);
     const hendleLogOut = () => {
-        // logOut().then(result => {
-        //   setUser()
-        // }).catch(() => { })
+        logOut().then(result => {
+          setUser()
+        }).catch(() => { })
     }
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" className='sticky-top nav-hight px-0 mx-0' variant="dark">

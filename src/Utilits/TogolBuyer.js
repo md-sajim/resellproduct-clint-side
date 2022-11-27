@@ -72,7 +72,7 @@ const Togolbuyer = () => {
 
 
                 <div className="form-outline mb-4">
-                    <input {...register("name", { required: "Enter your email" })} type="text" className="form-control" />
+                    <input {...register("name", { required: "Enter your name" })} type="text" className="form-control" />
                     <label className="form-label" htmlFor="loginName">User name</label>
                 </div>
                 <div className="form-outline mb-4">

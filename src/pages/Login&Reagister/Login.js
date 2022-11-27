@@ -1,15 +1,32 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { FaFacebookF, FaTwitter, FaGoogle, FaInstagramSquare } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import './Login&Register.css'
+import { useForm } from "react-hook-form";
+import { AuthContext } from '../../context/AuthProvider';
 
 const Login = () => {
+    const { login } = useContext(AuthContext);
+    const [loginErr, setLoginErr] = useState('')
+    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const onSubmit = data => {
+        login(data.email, data.pass)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+
+
+            })
+            .catch(err => {
+                setLoginErr(err.code.slice(5,))
+            })
+    };
     return (
         <div className='d-flex my-5 py-5 justify-content-center'>
             <div className="tab-content p-3" style={{ backgroundColor: '#73008c' }}>
-                <form >
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="text-center mb-3">
-                       <h3 className='text-white'>Login!</h3>
+                        <h3 className='text-white'>Login!</h3>
                         <p>Log in with:</p>
                         <button type="button" className="btn btn-primary btn-floating mx-1">
                             <FaFacebookF />
@@ -31,26 +48,35 @@ const Login = () => {
                     <p className="text-center">or:</p>
 
                     <div className="form-outline mb-2">
-                        <input type="email" id="loginName" className="form-control" />
+                        <input {...register("email", { required: "Enter your email" })} type="email" className="form-control" />
                         <label className="form-label" htmlFor="loginName">Email or username</label>
                     </div>
 
 
                     <div className="form-outline ">
-                        <input type="password" id="loginPassword" className="form-control" />
+                        <input {...register("pass", {
+                            required: "Please enter your password...",
+                            minLength: {
+                                value: 8,
+                                message: "password menimum 8 digits"
+                            }
+                        })} type="password" className="form-control" />
                         <label className="form-label" htmlFor="loginPassword">Password</label>
                     </div>
 
 
                     <div className="row mb-4">
-                        
+
 
                         <div className="col-md-12 d-flex justify-content-center">
 
                             <a href="#!">Forgot password?</a>
                         </div>
+                        <div className="col-md-12 d-flex justify-content-center">
+                            {errors.pass && <span className='text-danger'>{errors.pass.message}</span>}
+                            {loginErr && <span className='text-danger'>{loginErr}</span>}
+                        </div>
                     </div>
-
 
                     <button type="submit" className="btn btn-primary btn-block mb-4">Login</button>
 

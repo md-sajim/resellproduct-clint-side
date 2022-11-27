@@ -12,7 +12,7 @@ const AuthProvider = ({children}) => {
         setLoding(true)
         return createUserWithEmailAndPassword(auth, email, password)
     }
-    /*const login = (email,password)=>{
+    const login = (email,password)=>{
         setLoding(true)
         return signInWithEmailAndPassword(auth, email, password)
     }
@@ -20,6 +20,7 @@ const AuthProvider = ({children}) => {
         setLoding(true)
         return signOut(auth)
     }
+    /*
     const signupWithGoogle = googleProvider => {
         setLoding(true)
         return signInWithPopup(auth, googleProvider)
@@ -27,21 +28,24 @@ const AuthProvider = ({children}) => {
    const githubSignUp = githubProvider =>{
     setLoding(true);
     return signInWithPopup(auth, githubProvider)
-   }
+   }*/
     useEffect(()=>{
         const unsubscribe =  onAuthStateChanged(auth, carrantUser =>{
               setUser(carrantUser)
-            //   setLoding(false)
+              setLoding(false)
           })
           return ()=>unsubscribe;
       },[])
-      */
+      
 
     const value = {
         user,
         loding,
         createAccout,
-        setLoding
+        setLoding,
+        setUser,
+        logOut,
+        login
 
         
     }
