@@ -5,8 +5,8 @@ import './Login&Register.css'
 
 const Login = () => {
     return (
-        <div className='found-container-segister d-flex align-items-center justify-content-center'>
-            <div className="tab-content p-5" style={{ backgroundColor: '#73008c' }}>
+        <div className='d-flex my-5 py-5 justify-content-center'>
+            <div className="tab-content p-3" style={{ backgroundColor: '#73008c' }}>
                 <form >
                     <div className="text-center mb-3">
                        <h3 className='text-white'>Login!</h3>
@@ -59,7 +59,7 @@ const Login = () => {
                         <p>new in HomeFurniture? <Link to='/register'>Register now</Link></p>
                     </div>
                 </form>
-                <p><span class="badge bg-warning text-dark">Seller login use only Email and Password !!!</span></p>
+                <p><span className="badge bg-warning text-dark">Seller login use only Email and Password !!!</span></p>
             </div>
         </div>
     );

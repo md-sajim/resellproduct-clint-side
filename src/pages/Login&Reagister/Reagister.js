@@ -10,8 +10,9 @@ import './Login&Register.css'
 
 const Reagister = () => {
     const [toggle, setToggle] = useState(true)
+    
     return (
-        <div className='found-container-segister d-flex align-items-center justify-content-center'>
+        <div className='py-5 d-flex align-items-center justify-content-center'>
             <div className=' w-lg-25 w-md-100 w-sm-100'>
 
                 <ul className="nav nav-pills nav-justified  bg-secondary" id="ex1" role="tablist">
@@ -23,7 +24,7 @@ const Reagister = () => {
                     </li>
                 </ul>
 
-                <div className="tab-content p-5" style={{ backgroundColor: '#73008c' }}>
+                <div className="tab-content p-4" style={{ backgroundColor: '#73008c' }}>
                     {
                         toggle ? <Togolbuyer></Togolbuyer> : <ToggoleSeller></ToggoleSeller>
                     }
