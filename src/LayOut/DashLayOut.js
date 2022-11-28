@@ -19,7 +19,7 @@ const DashLayOut = () => {
 
 
     return (
-        <>
+        <div style={{backgroundColor:"whitesmoke",height:"120vh"}}>
             <Navber></Navber>
             {
                 carrantUser?.role === "admin" && <>
@@ -37,9 +37,9 @@ const DashLayOut = () => {
                     <h5 className='text-center text-decoration-underline mt-2 h4'>Seller</h5>
                     <div className='d-flex justify-content-center mt-3'>
                         <ButtonGroup aria-label="Basic example">
-                            <Button variant="secondary"><Link className='text-white text-decoration-none'>Add Product</Link></Button>
-                            <Button variant="primary"><Link className='text-white text-decoration-none'>My Product</Link></Button>
-                            <Button variant="secondary"><Link className='text-white text-decoration-none'>My buyer</Link></Button>
+                            <Button variant="secondary"><Link to='/dashbore/addproduct' className='text-white text-decoration-none active'>Add Product</Link></Button>
+                            <Button variant="primary"><Link to='/dashbore/myproduct' className='text-white text-decoration-none'>My Product</Link></Button>
+                            <Button variant="secondary"><Link to='/dashbore/mybuyers' className='text-white text-decoration-none'>My buyer</Link></Button>
                         </ButtonGroup>
                     </div>
                 </>
@@ -55,7 +55,7 @@ const DashLayOut = () => {
                 </>
             }
             <Outlet></Outlet>
-        </>
+        </div>
     );
 
 };

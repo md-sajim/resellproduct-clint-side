@@ -7,6 +7,9 @@ import Login from './pages/Login&Reagister/Login';
 import Reagister from './pages/Login&Reagister/Reagister';
 import Deshbord from './pages/Deshbord/Deshbord';
 import DashLayOut from './LayOut/DashLayOut';
+import MyProduct from './pages/Deshbord/Sellers/MyProduct/MyProduct';
+import MyBuyers from './pages/Deshbord/Sellers/MyBuyers/MyBuyers';
+import AddProduct from './pages/Deshbord/Sellers/AddProduct/AddProduct';
 
 function App() {
   const router = createBrowserRouter([
@@ -33,9 +36,18 @@ function App() {
       path: "/dashbore",
       element: <DashLayOut></DashLayOut>,
       children: [
+      
         {
-          path: "/dashbore",
-          element: <Deshbord></Deshbord>
+          path: "/dashbore/myproduct",
+          element: <MyProduct></MyProduct>
+        },
+        {
+          path: "/dashbore/mybuyers",
+          element: <MyBuyers></MyBuyers>
+        },
+        {
+          path: "/dashbore/addproduct",
+          element: <AddProduct></AddProduct>
         }
       ]
     },
