@@ -4,14 +4,17 @@ import { useForm } from "react-hook-form";
 import toast from 'react-hot-toast';
 
 const ToggoleSeller = () => {
-    const { createAccout } = useContext(AuthContext);
+    const { createAccout,updateUer } = useContext(AuthContext);
     const { register, handleSubmit, formState: { errors } } = useForm()
     const [loginErr, setLoginErr] = useState('');
     const onSubmit = data => {
         createAccout(data.email, data.pass)
             .then(result => {
-                const user = result.user;
-                console.log(user);
+                updateUer(data.name)
+                .then(result =>{
+                    console.log(result) 
+                })
+                .catch(err => console.log(err))
                 createUserDatabase(data.name,data.email)
 
             })

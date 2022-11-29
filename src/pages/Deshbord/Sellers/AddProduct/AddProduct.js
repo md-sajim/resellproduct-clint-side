@@ -1,114 +1,157 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../../context/AuthProvider';
-import {useForm} from 'react-hook-form'
-import { Button } from 'react-bootstrap';
+import { useForm } from 'react-hook-form'
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 
 const AddProduct = () => {
-    const {user} = useContext(AuthContext);
-    const {register, handleSubmit, formState:{errors}} = useForm();
-    const onSubmit = data =>{
-
+    const { user,lodign } = useContext(AuthContext);
+    const navigate = useNavigate()
+   
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const onSubmit = data => {
+        const product = {
+            name: data.name,
+            email: data.email,
+            productName: data.productname,
+            img: data.url,
+            resellPrice: data.resellPrice,
+            orginalPrice: data.orginalPrice,
+            purchase: data.purchase,
+            catagory: data.catagory,
+            condition: data.condition,
+            number: data.number,
+            location: data.location,
+            discription: data.discription,
+            avialabol:true
+        }
+        fetch("http://localhost:5000/product", {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(product)
+        })
+            .then(res => res.json())
+            .then(data1 => {
+                if (data1.acknowledged) {
+                    toast.success("product add success")
+                    navigate("/dashbore/myproduct")
+                }
+            })
+            .catch(err => toast.error(err))
     }
+   
+    if(lodign){
+        return lodign;
+    }
+    console.log(errors)
     return (
-        <div style={{ backgroundColor: "orange", height: "100vh" }} className='container'>
-            <h1>This is add product section</h1>
+        <div style={{ backgroundColor: "orange", height: "100%" }} 
+        className='container pb-5'>
+            <h1 className='my-5'>ADD YOUR PRODUCT</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
-            <div class="row">
-                <div class="col">
-                    <div class="form-outline">
-                        <input {...register("name", { required: "Enter your name" })} type="text" id="sellerNmae" class="form-control" />
-                        <label class="form-label" htmlFor="sellerNmae">Seller Name</label>
+                <div className="row">
+                    <div className="col">
+                        <div className="form-outline">
+                            <input  readOnly defaultValue={user?.displayName} {...register("name", { required: "Enter your name" })} type="text"  className="form-control" />
+                            <label className="form-label" htmlFor="sellerNmae">Seller Name</label>
+                        </div>
+                    </div>
+                    <div className="col">
+                        <div className="form-outline">
+                            <input  readOnly defaultValue={user?.email} {...register("email", { required: "Enter your email" })} type="email"  className="form-control" />
+                            <label className="form-label" htmlFor="sellerEmail">Seller Email</label>
+                        </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="form-outline">
-                        <input {...register("email", { required: "Enter your email" })} type="email" id="sellerEmail" class="form-control" />
-                        <label class="form-label" htmlFor="sellerEmail">Seller Email</label>
+                <div className="row">
+                    <div className="col">
+                        <div className="form-outline">
+                            <input {...register("productname", { required: "Enter your Product Name" })} type="text" id="productName" className="form-control" />
+                            <label className="form-label" htmlFor="productName">Product Name</label>
+                        </div>
+                    </div>
+                    <div className="col">
+                        <div className="form-outline">
+                            <input {...register("url", { required: "Enter your Img Url" })} type="text" id="imgUrl" className="form-control" />
+                            <label className="form-label" htmlFor="imgUrl">Product img url</label>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="form-outline">
-                        <input {...register("productname", { required: "Enter your Product Name" })} type="text" id="productName" class="form-control" />
-                        <label class="form-label" htmlFor="productName">Product Name</label>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-outline">
-                        <input {...register("url", { required: "Enter your Img Url" })} type="text" id="imgUrl" class="form-control" />
-                        <label class="form-label" htmlFor="imgUrl">Product img url</label>
-                    </div>
-                </div>
-            </div>
 
-            <hr />
+                <hr />
 
-            <div class="row">
-                <div class="col">
-                    <div class="form-outline">
-                        <input type="text" id="resellPrice" class="form-control" />
-                        <label {...register("resellPrice", { required: "Enter Resell Price" })} class="form-label" htmlFor="resellPrice">Resell Price</label>
+                <div className="row">
+                    <div className="col">
+                        <div className="form-outline">
+                            <input {...register("resellPrice", { required: "Enter Resell Price" })} type="number" id="resellPrice" className="form-control" />
+                            <label  className="form-label" htmlFor="resellPrice">Resell Price</label>
+                        </div>
+                    </div>
+                    <div className="col">
+                        <div className="form-outline">
+                            <input {...register("orginalPrice", { required: "Enter Orginal Price" })} type="number" id="orginalPrice" className="form-control" />
+                            <label className="form-label" htmlFor="orginalPrice">Orginal Price</label>
+                        </div>
+                    </div>
+                    <div className="col">
+                        <div className="form-outline">
+                            <input {...register("purchase", { required: "Enter your name" })} type="number" id="purchaseYear" className="form-control" />
+                            <label className="form-label" htmlFor="purchaseYear">Year of purchase</label>
+                        </div>
+                    </div>
+                    <div className="col">
+                        <div className="form-outline">
+
+                            <select
+                                {...register("catagory", { required: "Select catagory" })}
+                                className='form-control' name="catagory" id="catagory">
+                                <option value='living room'>Living Room</option>
+                                <option value='kitchen'>Kitchen</option>
+                                <option value='bedroom'>Bedroom</option>
+                                <option value='dining room furniture'>Dining Room Furniture</option>
+                            </select>
+                            <label className="form-label" htmlFor="catagory">Catagory</label>
+                        </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="form-outline">
-                        <input {...register("orginalPrice", { required: "Enter Orginal Price" })} type="text" id="orginalPrice" class="form-control" />
-                        <label class="form-label" htmlFor="orginalPrice">Orginal Price</label>
+                <div className="row">
+                    <div className="col">
+                        <div className="form-outline">
+                            <select
+                                {...register("condition", { required: "select your product condition" })}
+                                className='form-control' id="conditionType">
+                                <option value='excelent'>Excelent</option>
+                                <option value='good'>Good</option>
+                                <option value='fair'>Fair</option>
+
+                            </select>
+                            <label className="form-label" htmlFor="conditionType">Condition Type</label>
+                        </div>
+                    </div>
+                    <div className="col">
+                        <div className="form-outline">
+                            <input {...register("number", { required: "Enter your Mobil number" })} type="number" id="number" className="form-control" />
+                            <label className="form-label" htmlFor="number">Mobil number</label>
+                        </div>
+                    </div>
+                    <div className="col">
+                        <div className="form-outline">
+                            <input {...register("location", { required: "Enter your name" })} type="text" id="location" className="form-control" />
+                            <label className="form-label" htmlFor="location">Location</label>
+                        </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="form-outline">
-                        <input {...register("purchase", { required: "Enter your name" })} type="email" id="purchaseYear" class="form-control" />
-                        <label class="form-label" htmlFor="purchaseYear">Year of purchase</label>
+                <div className="row">
+                    <div className="form-outline mb-4">
+                        <textarea {...register("discription", { required: "Enter Discription" })} className="form-control" id="discription" rows="4"></textarea>
+                        <label className="form-label" htmlFor="discription">Discription</label>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="form-outline">
-                        
-                        <select className='form-control' name="catagory" id="catagory">
-                            <option value='living room'>Living Room</option>
-                            <option value='kitchen'>Kitchen</option>
-                            <option value='bedroom'>Bedroom</option>
-                            <option value='dining room furniture'>Dining Room Furniture</option>
-                        </select>
-                        <label class="form-label" htmlFor="catagory">Catagory</label>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="form-outline">
-                        <input type="text" placeholder='(excellent,good,fair)' id="conditionType" class="form-control" />
-                        <label class="form-label" htmlFor="conditionType">Condition Type</label>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-outline">
-                        <input type="number" id="number" class="form-control" />
-                        <label class="form-label" htmlFor="number">Mobil number</label>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="form-outline">
-                        <input type="email" id="location" class="form-control" />
-                        <label class="form-label" htmlFor="location">Location</label>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-outline mb-4">
-                    <textarea class="form-control" id="discription" rows="4"></textarea>
-                    <label class="form-label" for="discription">Discription</label>
-                </div>
-            </div>
-            <div className="d-grid gap-2">
-      <Button type='submit' variant="primary" size="lg">
-        Block level button
-      </Button>
-      
-    </div>
+                
+                <button className='btn btn-secondary btn-lg px-5' type="submit">ADD PRODUCT</button>
             </form>
         </div>
     );

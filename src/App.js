@@ -10,6 +10,8 @@ import DashLayOut from './LayOut/DashLayOut';
 import MyProduct from './pages/Deshbord/Sellers/MyProduct/MyProduct';
 import MyBuyers from './pages/Deshbord/Sellers/MyBuyers/MyBuyers';
 import AddProduct from './pages/Deshbord/Sellers/AddProduct/AddProduct';
+import { Toaster } from 'react-hot-toast';
+import Privaterouter from './route/Privaterouter/Privaterouter';
 
 function App() {
   const router = createBrowserRouter([
@@ -34,9 +36,9 @@ function App() {
     },
     {
       path: "/dashbore",
-      element: <DashLayOut></DashLayOut>,
+      element: <Privaterouter><DashLayOut></DashLayOut></Privaterouter>,
       children: [
-      
+
         {
           path: "/dashbore/myproduct",
           element: <MyProduct></MyProduct>
@@ -57,7 +59,10 @@ function App() {
     },
   ])
   return (
-    <RouterProvider router={router}></RouterProvider>
+    <>
+      <RouterProvider router={router}></RouterProvider>
+      <Toaster />
+    </>
   );
 }
 

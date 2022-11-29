@@ -1,9 +1,14 @@
 import React from 'react';
+import Advatige from './Advatige/Advatige';
+import SecondHandProductCatagory from './SecondHandProductCatagory/SecondHandProductCatagory';
+import Slider from './Slider/Slider';
 
 const Home = () => {
     return (
-        <div>
-            <h1>This is home</h1>
+        <div className='container'>
+            <Slider></Slider>
+            <Advatige></Advatige>
+            <SecondHandProductCatagory></SecondHandProductCatagory>
         </div>
     );
 };
