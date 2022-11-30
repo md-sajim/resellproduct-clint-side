@@ -36,8 +36,8 @@ body {
 }
 
 .swiper {
-  width: 240px;
-  height: 320px;
+  width: 440px;
+  height: 520px;
 }
 
 .swiper-slide {
@@ -89,3 +89,13 @@ body {
 .swiper-slide:nth-child(10n) {
   background-color: rgb(54, 94, 77);
 }
+/* brack point */
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .swiper {
+        width: 240px;
+        height: 320px;
+      }
+  }
+  
+  

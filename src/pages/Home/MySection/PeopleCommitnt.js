@@ -31,7 +31,17 @@ const PeopleCommitnt = () => {
         className="mySwiper"
       >
         {
-            data.map(d => <SwiperSlide>Slide 1</SwiperSlide>)
+            data.map(d => <SwiperSlide>
+                <div className='text-center'>
+                <p className='h6' style={{lineHeight:"10px"}}>{d.about.slice(0,20)}</p>
+                <p className='h6' style={{lineHeight:"10px"}}>{d.about.slice(21,41)}</p>
+                <p className='h6' style={{lineHeight:"10px"}}>{d.about.slice(42,62)}</p>
+                <p className='h6' style={{lineHeight:"10px"}}>{d.about.slice(63,83)}</p>
+                <p className='h6' style={{lineHeight:"10px"}}>{d.about.slice(84,104)}</p>
+                <h3>{d.name}</h3>
+                <h4>{d.email}</h4>
+                </div>
+                </SwiperSlide>)
         }
         
       </Swiper>
