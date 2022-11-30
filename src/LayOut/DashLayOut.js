@@ -27,7 +27,7 @@ const DashLayOut = () => {
                     <div className='d-flex justify-content-center mt-3'>
                         <ButtonGroup aria-label="Basic example">
                             <Button variant="secondary"><Link to='/dashbore/allseller' className='text-white text-decoration-none'>All seller</Link></Button>
-                            <Button variant="primary"><Link to='/dashbore/allbuyer' className='text-white text-decoration-none'>All buyer</Link></Button>
+                            <Button variant="secondary"><Link to='/dashbore/allbuyer' className='text-white text-decoration-none'>All buyer</Link></Button>
                         </ButtonGroup>
                     </div>
                 </>

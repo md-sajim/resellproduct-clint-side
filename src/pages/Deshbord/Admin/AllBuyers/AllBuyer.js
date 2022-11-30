@@ -1,7 +1,15 @@
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 
 const AllBuyer = () => {
-    const myProducts = [1, 3, 4, 333, 3, 333]
+const {data:allbuyer=[]}= useQuery({
+    queryKey:["allbuyer"],
+    queryFn:async()=>{
+        const res = await fetch('http://localhost:5000/allbuyer');
+        const data = await res.json();
+        return data;
+    }
+})
     return (
         <div style={{ backgroundColor: "orange", height: "100%" }} className='container pb-5'>
             <h1 className='my-5'>All Buyers</h1>
@@ -12,26 +20,20 @@ const AllBuyer = () => {
                         <th>Name</th>
                         <th>Email</th>
                         <th>Delet</th>
-                        <th>Verifyed</th>
 
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        myProducts?.map((product, i) => <tr>
+                        allbuyer?.map((buyer, i) => <tr>
                             <td className='ps-3'>{i + 1}</td>
                             <td>
-                                <p class="fw-normal mb-1">sajim</p>
+                                <p class="fw-normal mb-1">{buyer.name}</p>
                             </td>
-                            <td>sajim@gmail.com</td>
+                            <td>{buyer.email}</td>
                             <td>
                                 <button type="button" class="btn btn-danger  btn-sm btn-rounded">
                                     Delet
-                                </button>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-success  btn-sm btn-rounded">
-                                    Verify
                                 </button>
                             </td>
                         </tr>)
