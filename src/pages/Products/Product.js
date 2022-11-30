@@ -3,29 +3,34 @@ import { useLoaderData } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import { Button } from 'react-bootstrap';
 
 const Product = () => {
-    const {catagory,result}= useLoaderData();
+    const { catagory, result } = useLoaderData();
     return (
         <div className='container my-5'>
             <h1 className='text-center my-5'>{catagory}</h1>
-             <Row xs={1} md={2} lg={3} className="g-4">
-      {result?.map((_, idx) => (
-        <Col>
-          <Card>
-            <Card.Img variant="top" src="holder.js/100px160" />
-            <Card.Body>
-              <Card.Title>Card title</Card.Title>
-              <Card.Text>
-                This is a longer card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-      ))}
-    </Row>
+            <Row  xs={1} md={2} lg={3} className="g-4">
+                {result?.map((data) => (
+                    <Col >
+                        <Card style={{height:"680px"}}>
+                            <Card.Img style={{ height: "250px" }} variant="top" src={data.img} />
+                            <Card.Body>
+                                <Card.Title>Product Name : {data.productName}</Card.Title>
+                                <Card.Text>Location : {data.location}</Card.Text>
+                                <Card.Text>Orginal Price : {data.orginalPrice}</Card.Text>
+                                <Card.Text>Resell Price : {data.resellPrice}</Card.Text>
+                                <Card.Text>Purchase Year : {data.purchase}</Card.Text>
+                                <Card.Text>Post Time : {data.time}</Card.Text>
+                                <Card.Text>Seller Name : {data.name}</Card.Text>
+                                <Card.Text>Phone : {data.number}</Card.Text>
+                                <Card.Text>email : {data.email}</Card.Text>
+                            </Card.Body>
+                                <Button variant="secondary">Secondary</Button>
+                        </Card>
+                    </Col>
+                ))}
+            </Row>
         </div>
     );
 };
