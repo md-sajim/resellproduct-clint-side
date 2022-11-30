@@ -12,14 +12,14 @@ const DashLayOut = () => {
 
     useEffect(() => {
 
-        fetch(`http://localhost:5000/user?email=${user?.email}`)
+        fetch(`https://resell-product-server-nu.vercel.app/user?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setCarrantUser(data))
     }, [user])
 
 
     return (
-        <div className='pb-5' style={{backgroundColor:"whitesmoke"}}>
+        <div className='pb-5' style={{ backgroundColor: "whitesmoke" }}>
             <Navber></Navber>
             {
                 carrantUser?.role === "admin" && <>
@@ -37,7 +37,7 @@ const DashLayOut = () => {
                     <h5 className='text-center text-decoration-underline mt-2 h4'>Seller</h5>
                     <div className='d-flex justify-content-center mt-3'>
                         <ButtonGroup aria-label="Basic example">
-                            <Button  variant="secondary"><Link  to='/dashbore/addproduct' className='text-white text-decoration-none'>Add Product</Link></Button>
+                            <Button variant="secondary"><Link to='/dashbore/addproduct' className='text-white text-decoration-none'>Add Product</Link></Button>
                             <Button variant="secondary"><Link to='/dashbore/myproduct' className='text-white text-decoration-none'>My Product</Link></Button>
                             <Button variant="secondary"><Link to='/dashbore/mybuyers' className='text-white text-decoration-none'>My buyer</Link></Button>
                         </ButtonGroup>

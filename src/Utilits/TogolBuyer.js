@@ -16,20 +16,20 @@ const Togolbuyer = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                createUserDatabase(data.name,data.email)
+                createUserDatabase(data.name, data.email)
 
             })
             .catch(err => {
                 setLoginErr(err.code.slice(5,))
             })
     };
-    const createUserDatabase = (name,email)=>{
+    const createUserDatabase = (name, email) => {
         const user = {
             name,
             email,
-            role:"buyer"
+            role: "buyer"
         }
-        fetch("http://localhost:5000/users", {
+        fetch("https://resell-product-server-nu.vercel.app/users", {
             method: "POST",
             headers: {
                 "content-type": "application/json"

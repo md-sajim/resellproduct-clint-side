@@ -4,31 +4,31 @@ import { useForm } from "react-hook-form";
 import toast from 'react-hot-toast';
 
 const ToggoleSeller = () => {
-    const { createAccout,updateUer } = useContext(AuthContext);
+    const { createAccout, updateUer } = useContext(AuthContext);
     const { register, handleSubmit, formState: { errors } } = useForm()
     const [loginErr, setLoginErr] = useState('');
     const onSubmit = data => {
         createAccout(data.email, data.pass)
             .then(result => {
                 updateUer(data.name)
-                .then(result =>{
-                    console.log(result) 
-                })
-                .catch(err => console.log(err))
-                createUserDatabase(data.name,data.email)
+                    .then(result => {
+                        console.log(result)
+                    })
+                    .catch(err => console.log(err))
+                createUserDatabase(data.name, data.email)
 
             })
             .catch(err => {
                 setLoginErr(err.code.slice(5,))
             })
     }
-    const createUserDatabase = (name,email)=>{
+    const createUserDatabase = (name, email) => {
         const user = {
             name,
             email,
-            role:"seller"
+            role: "seller"
         }
-        fetch("http://localhost:5000/users", {
+        fetch("https://resell-product-server-nu.vercel.app/users", {
             method: "POST",
             headers: {
                 "content-type": "application/json"

@@ -33,13 +33,13 @@ function App() {
           element: <Reagister></Reagister>
         },
         {
-          path:'/produts/:id/:tast',
+          path: '/produts/:id/:tast',
           // loader:(params)=>console.log(params.params.id),
-          loader:(params)=>{
+          loader: (params) => {
             console.log(params)
-            return fetch(`http://localhost:5000/allproduct/${params.params.id}/${params.params.tast}`)
+            return fetch(`https://resell-product-server-nu.vercel.app/allproduct/${params.params.id}/${params.params.tast}`)
           },
-          element:<Product></Product>
+          element: <Product></Product>
         }
 
       ]

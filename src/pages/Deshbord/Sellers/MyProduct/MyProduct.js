@@ -6,11 +6,11 @@ const MyProduct = () => {
     const { user } = useContext(AuthContext)
     const [myProducts, setMyProducts] = useState()
     const [advatigement, setAdvatigement] = useState('')
-    const [delet,setDelet] = useState('')
+    const [delet, setDelet] = useState('')
     const { data: advitigeData = [] } = useQuery({
         queryKey: [advatigement],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/advatige/${advatigement}`, {
+            const res = await fetch(`https://resell-product-server-nu.vercel.app/advatige/${advatigement}`, {
                 method: 'PUT'
             })
             const data = await res.json();
@@ -20,7 +20,7 @@ const MyProduct = () => {
     const { data: deletProduct = [] } = useQuery({
         queryKey: [delet],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/delete/${delet}`, {
+            const res = await fetch(`https://resell-product-server-nu.vercel.app/delete/${delet}`, {
                 method: 'DELETe'
             })
             const data = await res.json();
@@ -28,14 +28,14 @@ const MyProduct = () => {
         }
     })
     if (advitigeData.acknowledged || deletProduct.acknowledged) {
-        fetch(`http://localhost:5000/myproduct?email=${user?.email}`)
+        fetch(`https://resell-product-server-nu.vercel.app/myproduct?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setMyProducts(data))
 
     }
 
     useEffect(() => {
-        fetch(`http://localhost:5000/myproduct?email=${user?.email}`)
+        fetch(`https://resell-product-server-nu.vercel.app/myproduct?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setMyProducts(data))
     }, [user])
@@ -89,7 +89,7 @@ const MyProduct = () => {
                                 }
                             </td>
                             <td>
-                                <button onClick={()=>setDelet(product._id)} type="button" class="btn btn-danger  btn-sm btn-rounded">
+                                <button onClick={() => setDelet(product._id)} type="button" class="btn btn-danger  btn-sm btn-rounded">
                                     Delet
                                 </button>
                             </td>

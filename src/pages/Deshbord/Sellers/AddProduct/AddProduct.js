@@ -26,7 +26,7 @@ const AddProduct = () => {
             discription: data.discription,
             avialabol: true
         }
-        fetch("http://localhost:5000/product", {
+        fetch("https://resell-product-server-nu.vercel.app/product", {
             method: "POST",
             headers: {
                 "content-type": "application/json"
