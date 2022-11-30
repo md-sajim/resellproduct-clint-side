@@ -13,6 +13,8 @@ import AddProduct from './pages/Deshbord/Sellers/AddProduct/AddProduct';
 import { Toaster } from 'react-hot-toast';
 import Privaterouter from './route/Privaterouter/Privaterouter';
 import Product from './pages/Products/Product';
+import AllBuyer from './pages/Deshbord/Admin/AllBuyers/AllBuyer';
+import AllSellers from './pages/Deshbord/Admin/AllSellers/AllSellers';
 
 function App() {
   const router = createBrowserRouter([
@@ -60,6 +62,14 @@ function App() {
         {
           path: "/dashbore/addproduct",
           element: <AddProduct></AddProduct>
+        },
+        {
+          path: "/dashbore/allbuyer",
+          element: <AllBuyer></AllBuyer>
+        },
+        {
+          path: "/dashbore/allseller",
+          element: <AllSellers></AllSellers>
         }
       ]
     },
