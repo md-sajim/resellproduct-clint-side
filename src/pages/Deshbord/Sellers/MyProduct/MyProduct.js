@@ -28,14 +28,14 @@ const MyProduct = () => {
         }
     })
     if (advitigeData.acknowledged || deletProduct.acknowledged) {
-        fetch(`http://localhost:5000/product?email=${user?.email}`)
+        fetch(`http://localhost:5000/myproduct?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setMyProducts(data))
 
     }
 
     useEffect(() => {
-        fetch(`http://localhost:5000/product?email=${user?.email}`)
+        fetch(`http://localhost:5000/myproduct?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setMyProducts(data))
     }, [user])

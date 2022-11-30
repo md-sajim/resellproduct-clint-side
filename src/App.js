@@ -12,6 +12,7 @@ import MyBuyers from './pages/Deshbord/Sellers/MyBuyers/MyBuyers';
 import AddProduct from './pages/Deshbord/Sellers/AddProduct/AddProduct';
 import { Toaster } from 'react-hot-toast';
 import Privaterouter from './route/Privaterouter/Privaterouter';
+import Product from './pages/Products/Product';
 
 function App() {
   const router = createBrowserRouter([
@@ -31,6 +32,15 @@ function App() {
           path: "/register",
           element: <Reagister></Reagister>
         },
+        {
+          path:'/produts/:id/:tast',
+          // loader:(params)=>console.log(params.params.id),
+          loader:(params)=>{
+            console.log(params)
+            return fetch(`http://localhost:5000/allproduct/${params.params.id}/${params.params.tast}`)
+          },
+          element:<Product></Product>
+        }
 
       ]
     },

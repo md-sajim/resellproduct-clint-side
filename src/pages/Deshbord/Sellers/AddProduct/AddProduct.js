@@ -6,9 +6,9 @@ import { useNavigate } from 'react-router-dom';
 
 
 const AddProduct = () => {
-    const { user,lodign } = useContext(AuthContext);
+    const { user, lodign } = useContext(AuthContext);
     const navigate = useNavigate()
-   
+
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
         const product = {
@@ -24,7 +24,7 @@ const AddProduct = () => {
             number: data.number,
             location: data.location,
             discription: data.discription,
-            avialabol:true
+            avialabol: true
         }
         fetch("http://localhost:5000/product", {
             method: "POST",
@@ -42,26 +42,26 @@ const AddProduct = () => {
             })
             .catch(err => toast.error(err))
     }
-   
-    if(lodign){
+
+    if (lodign) {
         return lodign;
     }
     console.log(errors)
     return (
-        <div style={{ backgroundColor: "orange", height: "100%" }} 
-        className='container pb-5'>
+        <div style={{ backgroundColor: "orange", height: "100%" }}
+            className='container pb-5'>
             <h1 className='my-5'>ADD YOUR PRODUCT</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="row">
                     <div className="col">
                         <div className="form-outline">
-                            <input  readOnly defaultValue={user?.displayName} {...register("name", { required: "Enter your name" })} type="text"  className="form-control" />
+                            <input readOnly defaultValue={user?.displayName} {...register("name", { required: "Enter your name" })} type="text" className="form-control" />
                             <label className="form-label" htmlFor="sellerNmae">Seller Name</label>
                         </div>
                     </div>
                     <div className="col">
                         <div className="form-outline">
-                            <input  readOnly defaultValue={user?.email} {...register("email", { required: "Enter your email" })} type="email"  className="form-control" />
+                            <input readOnly defaultValue={user?.email} {...register("email", { required: "Enter your email" })} type="email" className="form-control" />
                             <label className="form-label" htmlFor="sellerEmail">Seller Email</label>
                         </div>
                     </div>
@@ -87,7 +87,7 @@ const AddProduct = () => {
                     <div className="col">
                         <div className="form-outline">
                             <input {...register("resellPrice", { required: "Enter Resell Price" })} type="number" id="resellPrice" className="form-control" />
-                            <label  className="form-label" htmlFor="resellPrice">Resell Price</label>
+                            <label className="form-label" htmlFor="resellPrice">Resell Price</label>
                         </div>
                     </div>
                     <div className="col">
@@ -108,10 +108,10 @@ const AddProduct = () => {
                             <select
                                 {...register("catagory", { required: "Select catagory" })}
                                 className='form-control' name="catagory" id="catagory">
-                                <option value='living room'>Living Room</option>
-                                <option value='kitchen'>Kitchen</option>
-                                <option value='bedroom'>Bedroom</option>
-                                <option value='dining room furniture'>Dining Room Furniture</option>
+                                <option value={1}>Living Room</option>
+                                <option value={2}>Kitchen</option>
+                                <option value={3}>Bedroom</option>
+                                <option value={4}>Dining Room Furniture</option>
                             </select>
                             <label className="form-label" htmlFor="catagory">Catagory</label>
                         </div>
@@ -150,7 +150,7 @@ const AddProduct = () => {
                         <label className="form-label" htmlFor="discription">Discription</label>
                     </div>
                 </div>
-                
+
                 <button className='btn btn-secondary btn-lg px-5' type="submit">ADD PRODUCT</button>
             </form>
         </div>
