@@ -1,6 +1,6 @@
 
-# Project Name PHOTOGRAFI
-## Project [Link](https://assignment-11-clint-side.web.app/orderrevew).
+# Project Name The Comfort Zone
+## Project [Link](https://assingment-resell-furniture.web.app/).
 
  * ### Futures in this sites
     * Dynamic routing.
@@ -22,5 +22,6 @@ ___
     * react query
     * react hooks from
     * firbase 
+    * swipre
 
         
