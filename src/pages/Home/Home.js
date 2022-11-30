@@ -1,5 +1,6 @@
 import React from 'react';
 import Advatige from './Advatige/Advatige';
+import PeopleCommitnt from './MySection/PeopleCommitnt';
 import SecondHandProductCatagory from './SecondHandProductCatagory/SecondHandProductCatagory';
 import Slider from './Slider/Slider';
 
@@ -9,6 +10,7 @@ const Home = () => {
             <Slider></Slider>
             <Advatige></Advatige>
             <SecondHandProductCatagory></SecondHandProductCatagory>
+            <PeopleCommitnt></PeopleCommitnt>
         </div>
     );
 };

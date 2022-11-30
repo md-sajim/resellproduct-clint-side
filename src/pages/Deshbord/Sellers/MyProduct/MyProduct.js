@@ -1,24 +1,45 @@
+import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../../context/AuthProvider';
 
 const MyProduct = () => {
-    const { user, loding } = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
     const [myProducts, setMyProducts] = useState()
-    console.log(myProducts)
+    const [advatigement, setAdvatigement] = useState('')
+    const [delet,setDelet] = useState('')
+    const { data: advitigeData = [] } = useQuery({
+        queryKey: [advatigement],
+        queryFn: async () => {
+            const res = await fetch(`http://localhost:5000/advatige/${advatigement}`, {
+                method: 'PUT'
+            })
+            const data = await res.json();
+            return data;
+        }
+    })
+    const { data: deletProduct = [] } = useQuery({
+        queryKey: [delet],
+        queryFn: async () => {
+            const res = await fetch(`http://localhost:5000/delete/${delet}`, {
+                method: 'DELETe'
+            })
+            const data = await res.json();
+            return data;
+        }
+    })
+    if (advitigeData.acknowledged || deletProduct.acknowledged) {
+        fetch(`http://localhost:5000/product?email=${user?.email}`)
+            .then(res => res.json())
+            .then(data => setMyProducts(data))
+
+    }
 
     useEffect(() => {
-
         fetch(`http://localhost:5000/product?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setMyProducts(data))
     }, [user])
-    if (loding) {
-        return <p>loding...</p>
-    }
-    const advatigeMent = id =>{
-        console.log(id)
-
-    }
+    console.log(deletProduct)
     return (
         <div style={{ backgroundColor: "orange", height: "100%" }} className='container pb-5'>
             <h1 className='my-5'>MY PRODUCT</h1>
@@ -31,7 +52,7 @@ const MyProduct = () => {
                         <th>Aviable/Sold</th>
                         <th>Advatige</th>
                         <th>Delet</th>
-                        
+
                     </tr>
                 </thead>
                 <tbody>
@@ -54,17 +75,21 @@ const MyProduct = () => {
                             </td>
                             <td>
                                 {
-                                    product.avialabol? <span class="badge badge-success rounded-pill bg-success">Availabol</span>:<span class="badge badge-success rounded-pill d-inline bg-danger">Sold</span>
+                                    product.avialabol ? <span class="badge badge-success rounded-pill bg-success">Availabol</span> : <span class="badge badge-success rounded-pill d-inline bg-danger">Sold</span>
                                 }
-                                
+
                             </td>
                             <td>
-                                <button onClick={()=>advatigeMent(product._id)} type="button" class="btn btn-primary  btn-sm btn-rounded">
-                                    Advatige
-                                </button>
+                                {
+                                    product.advatige ? <button type="button" class="btn btn-primary  btn-sm btn-rounded">
+                                        Allrady Advatige
+                                    </button> : <button onClick={() => setAdvatigement(product._id)} type="button" class="btn btn-primary  btn-sm btn-rounded">
+                                        Advatige
+                                    </button>
+                                }
                             </td>
                             <td>
-                                <button type="button" class="btn btn-danger  btn-sm btn-rounded">
+                                <button onClick={()=>setDelet(product._id)} type="button" class="btn btn-danger  btn-sm btn-rounded">
                                     Delet
                                 </button>
                             </td>

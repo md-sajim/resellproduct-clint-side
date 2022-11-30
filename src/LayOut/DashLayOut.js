@@ -8,7 +8,7 @@ import { AuthContext } from '../context/AuthProvider';
 const DashLayOut = () => {
     const { user, loding } = useContext(AuthContext)
     const [carrantUser, setCarrantUser] = useState()
-    console.log(carrantUser)
+
 
     useEffect(() => {
 

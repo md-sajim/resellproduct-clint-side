@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { FaFacebookF, FaTwitter, FaGoogle, FaInstagramSquare } from "react-icons/fa";
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Login&Register.css'
 import { useForm } from "react-hook-form";
 import { AuthContext } from '../../context/AuthProvider';
@@ -8,12 +8,16 @@ import { AuthContext } from '../../context/AuthProvider';
 const Login = () => {
     const { login } = useContext(AuthContext);
     const [loginErr, setLoginErr] = useState('')
+    const navigat = useNavigate();
+    const location = useLocation();
+    const from = location?.state?.form?.pathname || "/"
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => {
         login(data.email, data.pass)
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                navigat(from, { replace: true })
 
 
             })
