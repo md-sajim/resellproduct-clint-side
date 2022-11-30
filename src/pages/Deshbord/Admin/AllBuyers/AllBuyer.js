@@ -1,8 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useState } from 'react';
 
 const AllBuyer = () => {
-const {data:allbuyer=[]}= useQuery({
+    const [buyerDelet, setBuyerDelet] = useState('')
+const {data:allbuyer=[],refetch}= useQuery({
     queryKey:["allbuyer"],
     queryFn:async()=>{
         const res = await fetch('http://localhost:5000/allbuyer');
@@ -10,6 +11,20 @@ const {data:allbuyer=[]}= useQuery({
         return data;
     }
 })
+const { data: deletbuyer = [] } = useQuery({
+    queryKey: [buyerDelet],
+    queryFn: async () => {
+        const res = await fetch(`http://localhost:5000/buyerdelete/${buyerDelet}`, {
+            method: 'DELETe'
+        })
+        const data = await res.json();
+        return data;
+    }
+})
+if (buyerDelet.acknowledged) {
+   refetch();
+
+}
     return (
         <div style={{ backgroundColor: "orange", height: "100%" }} className='container pb-5'>
             <h1 className='my-5'>All Buyers</h1>
@@ -32,7 +47,7 @@ const {data:allbuyer=[]}= useQuery({
                             </td>
                             <td>{buyer.email}</td>
                             <td>
-                                <button type="button" class="btn btn-danger  btn-sm btn-rounded">
+                                <button onClick={()=>setBuyerDelet(buyer._id)} type="button" class="btn btn-danger  btn-sm btn-rounded">
                                     Delet
                                 </button>
                             </td>
