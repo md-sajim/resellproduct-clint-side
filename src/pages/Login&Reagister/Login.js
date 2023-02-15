@@ -11,12 +11,10 @@ const Login = () => {
     const navigat = useNavigate();
     const location = useLocation();
     const from = location?.state?.form?.pathname || "/"
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
         login(data.email, data.pass)
             .then(result => {
-                const user = result.user;
-                console.log(user);
                 navigat(from, { replace: true })
 
 

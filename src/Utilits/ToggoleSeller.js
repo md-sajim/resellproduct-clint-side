@@ -2,8 +2,12 @@ import React, { useContext, useState } from 'react';
 import { AuthContext } from '../context/AuthProvider';
 import { useForm } from "react-hook-form";
 import toast from 'react-hot-toast';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const ToggoleSeller = () => {
+    const navigat = useNavigate();
+    const location = useLocation();
+    const from = location?.state?.form?.pathname || "/"
     const { createAccout, updateUer } = useContext(AuthContext);
     const { register, handleSubmit, formState: { errors } } = useForm()
     const [loginErr, setLoginErr] = useState('');
@@ -12,9 +16,10 @@ const ToggoleSeller = () => {
             .then(result => {
                 updateUer(data.name)
                     .then(result => {
-                        console.log(result)
+                        toast.success('user create success')
+                        navigat(from, { replace: true })
                     })
-                    .catch(err => console.log(err))
+                    .catch(err => toast.error(err))
                 createUserDatabase(data.name, data.email)
 
             })

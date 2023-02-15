@@ -1,18 +1,21 @@
 import React from 'react';
 import Advatige from './Advatige/Advatige';
+import Banar from './Banar';
+import MostPopular from './MostPopular/MostPopular';
 import PeopleCommitnt from './MySection/PeopleCommitnt';
 import SecondHandProductCatagory from './SecondHandProductCatagory/SecondHandProductCatagory';
-import Slider from './Slider/Slider';
 
-const Home = () => {
+
+
+const Explore = () => {
     return (
         <div className='container'>
-            <Slider></Slider>
+            <Banar></Banar>
+            <MostPopular bgimg={1} title={"Most Propular"}></MostPopular>
+            <MostPopular title={"Today’s Top Listing"}></MostPopular>
             <Advatige></Advatige>
-            <SecondHandProductCatagory></SecondHandProductCatagory>
-            <PeopleCommitnt></PeopleCommitnt>
         </div>
     );
 };
 
-export default Home;
+export default Explore;

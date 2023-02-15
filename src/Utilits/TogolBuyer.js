@@ -1,21 +1,20 @@
 import React, { useContext, useState } from 'react';
 import { FaFacebookF, FaTwitter, FaGoogle, FaInstagramSquare } from "react-icons/fa";
 import { useForm } from "react-hook-form";
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthProvider';
 import toast from 'react-hot-toast';
 
 const Togolbuyer = () => {
     const { createAccout } = useContext(AuthContext);
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const [loginErr, setLoginErr] = useState('')
-    // access token ar jonno ai start naya hoyaca!!
-    const [loginEmail, setLoginEmail] = useState('');
+    const navigat = useNavigate();
+    const location = useLocation();
+    const from = location?.state?.form?.pathname || "/"
     const onSubmit = data => {
         createAccout(data.email, data.pass)
             .then(result => {
-                const user = result.user;
-                console.log(user);
                 createUserDatabase(data.name, data.email)
 
             })
@@ -41,6 +40,7 @@ const Togolbuyer = () => {
                 if (data.acknowledged) {
                     // setCreatedUserEmail(email)
                     toast.success("usre create success")
+                    navigat(from, { replace: true })
                 }
             })
             .catch(err => toast.error(err))

@@ -46,7 +46,6 @@ const AddProduct = () => {
     if (lodign) {
         return lodign;
     }
-    console.log(errors)
     return (
         <div style={{ backgroundColor: "orange", height: "100%" }}
             className='container pb-5'>

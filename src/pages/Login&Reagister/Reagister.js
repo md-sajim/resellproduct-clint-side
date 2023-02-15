@@ -10,17 +10,17 @@ import './Login&Register.css'
 
 const Reagister = () => {
     const [toggle, setToggle] = useState(true)
-    
+
     return (
         <div className='py-5 d-flex align-items-center justify-content-center'>
             <div className=' w-lg-25 w-md-100 w-sm-100'>
 
                 <ul className="nav nav-pills nav-justified  bg-secondary" id="ex1" role="tablist">
                     <li className="nav-item bg-primary">
-                        <button onClick={() => setToggle(true)} type="button" class="btn btn-primary w-100 ">Buyer</button>
+                        <button onClick={() => setToggle(true)} type="button" className="btn btn-primary w-100 ">Buyer</button>
                     </li>
                     <li className="nav-item">
-                        <button onClick={() => setToggle(false)} type="button" class="btn btn-secondary w-100">Seller</button>
+                        <button onClick={() => setToggle(false)} type="button" className="btn btn-secondary w-100">Seller</button>
                     </li>
                 </ul>
 

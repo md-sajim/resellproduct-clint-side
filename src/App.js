@@ -1,11 +1,9 @@
-import './App.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Main from './LayOut/Main';
 import Home from './pages/Home/Home';
 import NotFound from './pages/NotFound/NotFound';
 import Login from './pages/Login&Reagister/Login';
 import Reagister from './pages/Login&Reagister/Reagister';
-import Deshbord from './pages/Deshbord/Deshbord';
 import DashLayOut from './LayOut/DashLayOut';
 import MyProduct from './pages/Deshbord/Sellers/MyProduct/MyProduct';
 import MyBuyers from './pages/Deshbord/Sellers/MyBuyers/MyBuyers';
@@ -15,6 +13,8 @@ import Privaterouter from './route/Privaterouter/Privaterouter';
 import Product from './pages/Products/Product';
 import AllBuyer from './pages/Deshbord/Admin/AllBuyers/AllBuyer';
 import AllSellers from './pages/Deshbord/Admin/AllSellers/AllSellers';
+import Blog from './pages/Blog/Blog';
+import Explore from './pages/Home_2/Home_2/Explor';
 
 function App() {
   const router = createBrowserRouter([
@@ -27,6 +27,10 @@ function App() {
           element: <Home></Home>
         },
         {
+          path:"/explor",
+          element:<Explore></Explore>
+        },
+        {
           path: "/login",
           element: <Login></Login>
         },
@@ -36,12 +40,14 @@ function App() {
         },
         {
           path: '/produts/:id/:tast',
-          // loader:(params)=>console.log(params.params.id),
           loader: (params) => {
-            console.log(params)
             return fetch(`https://resell-product-server-nu.vercel.app/allproduct/${params.params.id}/${params.params.tast}`)
           },
           element: <Product></Product>
+        },
+        {
+          path: "/blog",
+          element: <Blog></Blog>
         }
 
       ]

@@ -14,8 +14,9 @@ const Slider = () => {
         <Carousel>
         
         {
-            slider.map(slid =><Carousel.Item>
+            slider.map(slid =><Carousel.Item key={slid.id}>
                 <img
+                
                 style={{height:"60vh"}}
                   className="d-block w-100"
                   src={slid.img}

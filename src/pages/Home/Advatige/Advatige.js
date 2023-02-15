@@ -13,15 +13,14 @@ const Advatige = () => {
             return data;
         }
     })
-    console.log(data)
     return (
         <>
             {
                 data?.length ? <div className='my-5'>
                     <h1 className='text-center mb-4'>Advatige</h1>
                     <Row xs={1} md={2} lg={3} className="g-4">
-                        {data.map((dataAd, idx) => (
-                            <Col>
+                        {data.map((dataAd, idx) => 
+                            <Col key={dataAd._id}>
                                 <Card>
                                     <Card.Img style={{ height: "300px" }} variant="top" src={dataAd.img} />
                                     <Card.Body>
@@ -29,7 +28,7 @@ const Advatige = () => {
                                     </Card.Body>
                                 </Card>
                             </Col>
-                        ))}
+                        )}
                     </Row>
                 </div> : <div></div>
             }

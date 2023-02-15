@@ -1,0 +1,10 @@
+.btnhover{
+    color: black;
+    text-decoration: none;
+    margin:0 15px;
+    font-weight: 600;
+    font-size: 18px;
+}
+.btnhover:hover{
+    color: #FCA129;   
+}

@@ -39,12 +39,11 @@ const MyProduct = () => {
             .then(res => res.json())
             .then(data => setMyProducts(data))
     }, [user])
-    console.log(deletProduct)
     return (
         <div style={{ backgroundColor: "orange", height: "100%" }} className='container pb-5'>
             <h1 className='my-5'>MY PRODUCT</h1>
-            <table class="table align-middle mb-0 bg-white">
-                <thead class="bg-light">
+            <table className="table align-middle mb-0 bg-white">
+                <thead className="bg-light">
                     <tr>
                         <th></th>
                         <th>Picture</th>
@@ -57,39 +56,41 @@ const MyProduct = () => {
                 </thead>
                 <tbody>
                     {
-                        myProducts?.map((product, i) => <tr>
+                        myProducts?.map((product, i) => <tr
+                            key={product._id}
+                        >
                             <td className='ps-3'>{i + 1}</td>
                             <td>
-                                <div class="d-flex align-items-center">
+                                <div className="d-flex align-items-center">
                                     <img
                                         src={product.img}
                                         alt=""
                                         style={{ width: "55px", height: "55px" }}
-                                        class="rounded"
+                                        className="rounded"
                                     />
                                 </div>
                             </td>
                             <td>
-                                <p class="fw-normal mb-1">{product.productName
+                                <p className="fw-normal mb-1">{product.productName
                                 }</p>
                             </td>
                             <td>
                                 {
-                                    product.avialabol ? <span class="badge badge-success rounded-pill bg-success">Availabol</span> : <span class="badge badge-success rounded-pill d-inline bg-danger">Sold</span>
+                                    product.avialabol ? <span className="badge badge-success rounded-pill bg-success">Availabol</span> : <span className="badge badge-success rounded-pill d-inline bg-danger">Sold</span>
                                 }
 
                             </td>
                             <td>
                                 {
-                                    product.advatige ? <button type="button" class="btn btn-primary  btn-sm btn-rounded">
+                                    product.advatige ? <button type="button" className="btn btn-primary  btn-sm btn-rounded">
                                         Allrady Advatige
-                                    </button> : <button onClick={() => setAdvatigement(product._id)} type="button" class="btn btn-primary  btn-sm btn-rounded">
+                                    </button> : <button onClick={() => setAdvatigement(product._id)} type="button" className="btn btn-primary  btn-sm btn-rounded">
                                         Advatige
                                     </button>
                                 }
                             </td>
                             <td>
-                                <button onClick={() => setDelet(product._id)} type="button" class="btn btn-danger  btn-sm btn-rounded">
+                                <button onClick={() => setDelet(product._id)} type="button" className="btn btn-danger  btn-sm btn-rounded">
                                     Delet
                                 </button>
                             </td>

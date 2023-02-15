@@ -1,4 +1,3 @@
-import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
@@ -17,7 +16,9 @@ const SecondHandProductCatagory = () => {
             <div className='d-flex justify-content-center'>
                 <ButtonGroup aria-label="Basic example ">
                     {
-                        catagorys.map(catagory => <Button variant="secondary"><Link
+                        catagorys.map(catagory => <Button 
+                            key={catagory.id}
+                            variant="secondary"><Link
                         to={`/produts/${catagory.id}/${catagory.catagoryName}`}
                         className='text-decoration-none text-white'
                         >{catagory.catagoryName}</Link></Button>)

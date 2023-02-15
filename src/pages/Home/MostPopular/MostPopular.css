@@ -1,0 +1,92 @@
+#populer-header {
+    background-color: rgba(218, 165, 32, 0.071);
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 33px;
+    color: #000000;
+    padding: 33px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.bgimg {
+    background-image: url(../../../assets/CARDIMG/pexels-pixabay-276583.jpg);
+    height: 70vh;
+    background-size: cover;
+
+
+
+}
+
+.bgimg1 {
+    background-image: url(../../../assets/CARDIMG/pexels-medhat-ayad-447592.jpg);
+    height: 70vh;
+    background-size: cover;
+
+
+
+}
+
+#populer-header a {
+    color: #FCA129;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 33px;
+}
+
+#populer-header a:hover {
+    color: #fca1299f;
+    cursor: pointer;
+}
+
+.cardbig {
+    margin: 20px;
+}
+
+.cardbig img {
+    height: 90%;
+
+}
+
+.cardbig p {
+    font-weight: 400;
+    font-size: 20px;
+}
+
+
+
+
+.cardsmill {
+    margin: 80px;
+}
+
+.cardsmill img {
+    height: 90%;
+}
+
+.cardsmill p {
+    font-weight: 400;
+    font-size: 14px;
+}
+
+
+
+.bgimg p span {
+    color: #FCA129;
+}
+
+#like-heart {
+    color: #FCA129;
+    border: 2px solid #FCA129;
+    border-radius: 50%;
+    padding: 2px 4px;
+    margin-bottom: 15px;
+}
+
+#like-heart:hover {
+    color: #fca1299f;
+    border: 2px solid #fca1299f;
+    
+}
